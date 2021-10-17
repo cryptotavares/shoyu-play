@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  shoyu-play:
+    build: .
+    command: yarn start
+    ports:
+      - 4992:4992
+    environment:
+      - APP_NAME=shoyu-play
+      - NODE_ENV=development
+      - APP_ENV=development
+      - MONGO_URI=mongodb://mongo
+      - LOG_LEVEL=debug
+    volumes:
+      - .:/app/
+
+  mongo:
+    container_name: shoyu-mongo
+    image: mongo:4.2
+    ports:
+      - 27037:27017
