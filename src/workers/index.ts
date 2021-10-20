@@ -1,5 +1,5 @@
 import { Worker } from 'worker_threads';
-import { IS_DEVELOPMENT, IS_PRODUCTION } from '../configs';
+import { NETWORKS } from '../configs';
 import {
   initDefaultNetworkIndexer,
   initKovanNetworkIndexer,
@@ -13,12 +13,15 @@ const workerPool: Worker[] = [];
  * Depending on the Environment that we are running.
  */
 export const initWorkers = () => {
-  if (IS_DEVELOPMENT) {
+  if (NETWORKS.default.enabled) {
     workerPool.push(initDefaultNetworkIndexer());
   }
 
-  if (IS_PRODUCTION) {
+  if (NETWORKS.kovan.enabled) {
     workerPool.push(initKovanNetworkIndexer());
+  }
+
+  if (NETWORKS.rinkeby.enabled) {
     workerPool.push(initRinkebyNetworkIndexer());
   }
 };
