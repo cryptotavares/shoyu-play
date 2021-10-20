@@ -8,7 +8,7 @@
     "dockerlint": "dockerlint Dockerfile",
     "eslint": "eslint src --ext ts",
     "eslint:fix": "eslint src --ext ts --fix",
-    "start": "node dist/index.js",
+    "start": "node --enable-source-maps dist/index.js",
     "start-dev": "APP_NAME=shoyu-play APP_ENV=development nodemon --exec node --inspect=0.0.0.0:5858 -r ts-node/register src/index.ts",
     "test": "jest --forceExit --runInBand --ci",
     "test:coverage": "jest --forceExit --runInBand --ci --coverage",
