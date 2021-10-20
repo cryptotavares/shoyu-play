@@ -70,6 +70,5 @@ export const getContract = (chainId: number) => {
 };
 
 export const getAddressFromAuthSign = (authSignature: string) => {
-  const message = ethers.utils.hashMessage(SIGN_MESSAGE);
-  return ethers.utils.verifyMessage(message, authSignature);
+  return ethers.utils.verifyMessage(SIGN_MESSAGE, authSignature);
 };
