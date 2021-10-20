@@ -8,7 +8,7 @@ let db: Db;
 
 export async function initDb(): Promise<void> {
   try {
-    dbClient = new MongoClient(DB_URI, { useUnifiedTopology: true });
+    dbClient = new MongoClient(DB_URI);
     await dbClient.connect();
 
     db = dbClient.db(DB_NAME);

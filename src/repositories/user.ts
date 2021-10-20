@@ -79,8 +79,8 @@ export const upsertDbUserFromEventUser = async (user: User, userEvent: UserEvent
     throw new StackedError('Failed to persist user', error);
   }
 
-  if (result.modifiedCount !== 1) {
-    throw new StackedError('Failed to persist user. Upsert count different than 1');
+  if (!result.acknowledged) {
+    throw new StackedError('Failed to persist user.');
   }
 
   return;

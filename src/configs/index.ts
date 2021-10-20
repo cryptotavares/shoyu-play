@@ -1,3 +1,9 @@
+import * as dotenv from 'dotenv';
+
+if (process.env.APP_ENV === 'production') {
+  dotenv.config();
+}
+
 export const APP_NAME = process.env.APP_NAME || 'shoyu-play';
 export const APP_ENV = process.env.APP_ENV || 'development';
 
