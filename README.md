@@ -98,7 +98,49 @@ APP_ENV=production yarn start
 Do not worry about your database being empty. If there are already events to be indexed, you just need to set the proper <NETWORK>_BLOCK_DEPLOY env var (use .env for it), and the indexer will start processing all the events starting at that block. It will then rebuild the data on the db if needed.
 
 ## Tests
-To be included
+The test descriptor selected is [jest](https://jestjs.io/en/).
+The project has 2 types of tests: unit tests and e2e tests.
+
+To run all tests at once, you should ensure that mongodb is up and running. To do that you just need to run:
+```bash
+docker-compose up mongo
+```
+
+Now the only thing missing is running the test script:
+```bash
+yarn test
+```
+
+#### e2e tests
+e2e tests aim to test the system as a whole. This means that nothing should be mocked and we would need the db to be up and running. There's no need
+to start the server, because we can just create the server instance and wrap it with supertest.
+
+To run e2e tests you need to to the following:
+
+1. ensure that mongodb is up and running. You can do that by:
+```bash
+docker-compose up mongo
+```
+
+2. Execute the e2e tests script
+```bash
+yarn test:e2e
+```
+
+I haven't implemented e2e tests that would interact with the and ethereum rpc mock. But that would be part of the next steps. I would probably use something like [open-rpc](https://github.com/open-rpc/mock-server).
+
+I would also split the node worker e2e tests from the http server.
+
+#### Unit tests
+Unit tests aim to test a specific single logic unit.
+All dependencies for that logic unit should be mocked (rely on jest mocks/spies).
+
+To run unit tests you need to to the following:
+
+1. Execute the unit tests script
+```bash
+yarn test:unit
+```
 
 ## CHALLENGE FEEDBACK
 I found out the challenge very interesting and I feel that I have learn a lot from doing it. As I had said previously, although I have a lot of experience with Node/Typescript and creating micro services, I had never created a GraphQl server, neither created a server to interact with a smart contracts.

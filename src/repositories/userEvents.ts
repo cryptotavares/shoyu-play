@@ -4,7 +4,7 @@ import StackedError from '../adapters/StackedError';
 import { DbUserEvent, UserEvent } from '../types/userEvent';
 import * as userRepository from './user';
 
-const USER_EVENTS_DB_COLLECTION = 'userEvents';
+export const USER_EVENTS_DB_COLLECTION = 'userEvents';
 
 /**
  * Setup collection configuration (in this case specific indexes)

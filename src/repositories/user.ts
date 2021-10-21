@@ -5,7 +5,7 @@ import StackedError from '../adapters/StackedError';
 import { DbUser, User, UserInput } from '../types/user';
 import { UserEvent } from '../types/userEvent';
 
-const USER_DB_COLLECTION = 'users';
+export const USER_DB_COLLECTION = 'users';
 
 /**
  * Setup collection configuration (in this case specific indexes)
