@@ -11,7 +11,7 @@ At the moment the only networks supported are:
 Built with [Typescript](https://www.typescriptlang.org/docs/) :blue_heart:
 
 ## Local development
-This project doesn't need any .env file. To run the project locally you first need to install dependencies:
+To run the project locally you first need to install dependencies:
 
 ```bash
 yarn install
@@ -63,6 +63,39 @@ yarn dockerlint
 ```bash
 yarn build
 ```
+
+## Connect to Kovan and Rinkeby
+Add a .env file with the configuration required to connect to Kovan and Rinkeby. I decided to go with dotenv because it is easier for bootstrapping the server locally to connect to both kovan and rinkeby (so this is for demonstration purposes only).
+
+Variables that .env should contain:
+```
+// wallet that deployed the contract private key (assuming same wallet for all networks)
+PRIVATE_KEY
+
+// Infura project keys.
+INFURA_API_KEY
+INFURA_PROJECT_ID
+
+// Kovan contract address and a boolean stating if the server should ne connecting to Kovan or not
+KOVAN_ADDRESS
+KOVAN_ENABLED
+
+// Rinkeby contract address and a boolean stating if the server should ne connecting to Rinkeby or not
+RINKEBY_ADDRESS
+RINKEBY_ENABLED
+
+NODE_ENV=production
+```
+
+First bring up mongo and then start the in production mode:
+
+```bash
+docker-compose up mongo
+yarn build
+APP_ENV=production yarn start
+```
+
+Do not worry about your database being empty. If there are already events to be indexed, you just need to set the proper <NETWORK>_BLOCK_DEPLOY env var (use .env for it), and the indexer will start processing all the events starting at that block. It will then rebuild the data on the db if needed.
 
 ## Tests
 To be included
